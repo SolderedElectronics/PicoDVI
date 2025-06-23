@@ -8,8 +8,11 @@
 
 // Pull in base headers to make sure board definitions override the
 // definitions provided here. Note this file is included in asm and C.
+// added ifndef after Philhower 4.6.0 release to fix compilation issue
+#ifndef __ASSEMBLER__
 #include "hardware/platform_defs.h"
 #include "pico/config.h"
+#endif
 
 // ----------------------------------------------------------------------------
 // General DVI defines
