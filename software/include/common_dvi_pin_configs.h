@@ -120,6 +120,16 @@ static const struct dvi_serialiser_cfg adafruit_dvibell_cfg = {
   .invert_diffpairs = false,
 };
 
+// hstx dvi cowbell
+static const struct dvi_serialiser_cfg adafruit_hstxdvibell_cfg = {
+  .pio = DVI_DEFAULT_PIO_INST,
+  .sm_tmds = {0, 1, 2},
+  .pins_tmds = {12, 18, 16},
+  .pins_clk = 14,
+  .invert_diffpairs = false,
+};
+
+
 // Adafruit 'Fruit Jam' computer board
 static const struct dvi_serialiser_cfg adafruit_fruitjam_cfg = {
 	.pio = DVI_DEFAULT_PIO_INST,
