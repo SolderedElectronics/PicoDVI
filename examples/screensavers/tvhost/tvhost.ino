@@ -6,12 +6,16 @@
 
 #include <PicoDVI.h>
 #include "sprites.h" // Graphics data
+#include <Adafruit_NeoPixel.h>
 
-DVIGFX8 display(DVI_RES_320x240p60, true, adafruit_feather_dvi_cfg);
+DVIGFX8 display(DVI_RES_320x240p60, true, soldered_nula_rp2350_dvi_cfg);
 
 // See notes in 8bit_double_buffer regarding 400x240 mode.
-//DVIGFX8 display(DVI_RES_400x240p60, true, adafruit_feather_dvi_cfg);
+//DVIGFX8 display(DVI_RES_400x240p60, true, soldered_nula_rp2350_dvi_cfg);
 // Also requires -O3 setting.
+
+// Configure WSLED parameters
+Adafruit_NeoPixel pixels(1, 26); // WSLED object
 
 #define SPRITE_WIDTH  256
 #define SPRITE_HEIGHT 207
@@ -50,9 +54,20 @@ float scale;       // Calc'd once per frame for in/out bounce effect
 float min_scale = sqrt((display.width() * display.width() + display.height() * display.height()) / 4) / M_SQRT2 * 2.0;
 
 void setup() { // Runs once on startup
-  if (!display.begin()) { // Blink LED if insufficient RAM
-    pinMode(LED_BUILTIN, OUTPUT);
-    for (;;) digitalWrite(LED_BUILTIN, (millis() / 500) & 1);
+  // Initialize the onboard NeoPixel RGB, used for debugging
+  pixels.begin();
+
+  if (!display.begin()) { 
+    // Blink LED red infinitely - something's wrong
+    while (true)
+    {
+        pixels.setPixelColor(0, pixels.Color(0x20, 0, 0)); // Set the color to red
+        pixels.show();
+        delay(400);
+        pixels.clear();
+        pixels.show();
+        delay(400);
+    }
   }
 
   // Initialize color palette from table in sprites.h. Rather than

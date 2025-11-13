@@ -6,11 +6,15 @@
 
 #include <PicoDVI.h>
 #include "sprite.h" // Graphics data
+#include <Adafruit_NeoPixel.h>
 
-DVIGFX1 display(DVI_RES_640x480p60, true, adafruit_feather_dvi_cfg);
+DVIGFX1 display(DVI_RES_640x480p60, true, soldered_nula_rp2350_dvi_cfg);
+
+// Configure WSLED parameters
+Adafruit_NeoPixel pixels(1, 26); // WSLED object
 
 // See notes in 1bit_double_buffer regarding 800x480 mode.
-//DVIGFX1 display(DVI_RES_800x480p60, true, adafruit_feather_dvi_cfg);
+//DVIGFX1 display(DVI_RES_800x480p60, true, soldered_nula_rp2350_dvi_cfg);
 // May also require -O3 setting.
 
 int x  = 0; // Start logo at
@@ -19,9 +23,20 @@ int vx = 1; // moving right
 int vy = 1; // and down
 
 void setup() { // Runs once on startup
-  if (!display.begin()) { // Blink LED if insufficient RAM
-    pinMode(LED_BUILTIN, OUTPUT);
-    for (;;) digitalWrite(LED_BUILTIN, (millis() / 500) & 1);
+  // Initialize the onboard NeoPixel RGB, used for debugging
+  pixels.begin();
+
+  if (!display.begin()) { 
+    // Blink LED red infinitely - something's wrong
+    while (true)
+    {
+        pixels.setPixelColor(0, pixels.Color(0x20, 0, 0)); // Set the color to red
+        pixels.show();
+        delay(400);
+        pixels.clear();
+        pixels.show();
+        delay(400);
+    }
   }
 }
 

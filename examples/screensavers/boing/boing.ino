@@ -5,9 +5,10 @@
 
 #include <PicoDVI.h>
 #include "graphics.h" // Graphics data
+#include <Adafruit_NeoPixel.h>
 
 // 4:3 aspect for that Amiga flavour:
-DVIGFX8 display(DVI_RES_320x240p60, true, adafruit_feather_dvi_cfg);
+DVIGFX8 display(DVI_RES_320x240p60, true, soldered_nula_rp2350_dvi_cfg);
 
 #define YBOTTOM   123  // Ball Y coord at bottom
 #define YBOUNCE  -3.5  // Upward velocity on ball bounce
@@ -19,10 +20,25 @@ float ballx     = 20.0, bally     = YBOTTOM, // Current ball position
       ballframe = 3;                         // Ball animation frame #
 int   balloldx  = ballx, balloldy = bally;   // Prior ball position
 
+// Configure WSLED parameters
+Adafruit_NeoPixel pixels(1, 26); // WSLED object
+
+
 void setup() {
-  if (!display.begin()) { // Blink LED if insufficient RAM
-    pinMode(LED_BUILTIN, OUTPUT);
-    for (;;) digitalWrite(LED_BUILTIN, (millis() / 500) & 1);
+  // Initialize the onboard NeoPixel RGB, used for debugging
+  pixels.begin();
+
+  if (!display.begin()) { 
+    // Blink LED red infinitely - something's wrong
+    while (true)
+    {
+        pixels.setPixelColor(0, pixels.Color(0x20, 0, 0)); // Set the color to red
+        pixels.show();
+        delay(400);
+        pixels.clear();
+        pixels.show();
+        delay(400);
+    }
   }
 
   // Set up color palette
