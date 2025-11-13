@@ -6,6 +6,7 @@
  * @file PicoDVI.h
  *
  * Arduino-and-Adafruit-GFX wrapper around Luke Wren's PicoDVI library.
+ * Modified by Soldered Electronics for easier use with the Soldered NULA RP2350 board
  */
 
 #pragma once
@@ -51,7 +52,7 @@ public:
                specified is 640x480p60.
     @param  c  Pointer to dvi_serialiser_cfg struct, which defines pinout.
                These are in ../software/include/common_dvi_pin_configs.h.
-               Default if not specified is adafruit_feather_dvi_cfg.
+               Default if not specified is soldered_nula_rp2350_dvi_cfg.
     @param  v  Core voltage; higher resolution modes require faster
                overclocking and potentially higher voltages. This is an
                enumeration declared in Pico SDK hardware/vreg.h. Normal
@@ -59,7 +60,7 @@ public:
                specified is 1.2V.
   */
   PicoDVI(const struct dvi_timing &t = dvi_timing_640x480p_60hz,
-          const struct dvi_serialiser_cfg &c = adafruit_feather_dvi_cfg,
+          const struct dvi_serialiser_cfg &c = soldered_nula_rp2350_dvi_cfg,
           vreg_voltage v = VREG_VOLTAGE_1_20);
   ~PicoDVI(void);
   /*!
@@ -94,7 +95,7 @@ public:
                   handle anything larger as a pixel-accessible framebuffer.
     @param  c     Pointer to dvi_serialiser_cfg struct, which defines pinout.
                   These are in ../software/include/common_dvi_pin_configs.h.
-                  Default if not specified is adafruit_feather_dvi_cfg.
+                  Default if not specified is soldered_nula_rp2350_dvi_cfg.
     @param  v     Core voltage; higher resolution modes require faster
                   overclocking and potentially higher voltages. This is an
                   enumeration declared in Pico SDK hardware/vreg.h. Normal
@@ -102,7 +103,7 @@ public:
                   specified is 1.2V.
   */
   DVIGFX16(const DVIresolution res = DVI_RES_320x240p60,
-           const struct dvi_serialiser_cfg &c = adafruit_feather_dvi_cfg,
+           const struct dvi_serialiser_cfg &c = soldered_nula_rp2350_dvi_cfg,
            vreg_voltage v = VREG_VOLTAGE_1_20);
   ~DVIGFX16(void);
   /*!
@@ -146,7 +147,7 @@ public:
                   can alternate between these for flicker-free animation.
     @param  c     Pointer to dvi_serialiser_cfg struct, which defines pinout.
                   These are in ../software/include/common_dvi_pin_configs.h.
-                  Default if not specified is adafruit_feather_dvi_cfg.
+                  Default if not specified is soldered_nula_rp2350_dvi_cfg.
     @param  v     Core voltage; higher resolution modes require faster
                   overclocking and potentially higher voltages. This is an
                   enumeration declared in Pico SDK hardware/vreg.h. Normal
@@ -154,7 +155,7 @@ public:
                   specified is 1.2V.
   */
   DVIGFX8(const DVIresolution res = DVI_RES_320x240p60, const bool dbuf = false,
-          const struct dvi_serialiser_cfg &c = adafruit_feather_dvi_cfg,
+          const struct dvi_serialiser_cfg &c = soldered_nula_rp2350_dvi_cfg,
           vreg_voltage v = VREG_VOLTAGE_1_20);
   ~DVIGFX8(void);
   /*!
@@ -249,7 +250,7 @@ public:
                   free animation.
     @param  c     Pointer to dvi_serialiser_cfg struct, which defines pinout.
                   These are in ../software/include/common_dvi_pin_configs.h.
-                  Default if not specified is adafruit_feather_dvi_cfg.
+                  Default if not specified is soldered_nula_rp2350_dvi_cfg.
     @param  v     Core voltage; higher resolution modes require faster
                   overclocking and potentially higher voltages. This is an
                   enumeration declared in Pico SDK hardware/vreg.h. Normal
@@ -257,7 +258,7 @@ public:
                   specified is 1.2V.
   */
   DVIGFX1(const DVIresolution res = DVI_RES_640x480p60, const bool dbuf = false,
-          const struct dvi_serialiser_cfg &c = adafruit_feather_dvi_cfg,
+          const struct dvi_serialiser_cfg &c = soldered_nula_rp2350_dvi_cfg,
           vreg_voltage v = VREG_VOLTAGE_1_20);
   ~DVIGFX1(void);
   /*!
@@ -304,7 +305,7 @@ public:
                  yields 80x30 characters).
     @param  c    Pointer to dvi_serialiser_cfg struct, which defines pinout.
                  These are in ../software/include/common_dvi_pin_configs.h.
-                 Default if not specified is adafruit_feather_dvi_cfg.
+                 Default if not specified is soldered_nula_rp2350_dvi_cfg.
     @param  v    Core voltage; higher resolution modes require faster
                  overclocking and potentially higher voltages. This is an
                  enumeration declared in Pico SDK hardware/vreg.h. Normal
@@ -312,7 +313,7 @@ public:
                  specified is 1.2V.
   */
   DVItext1(const DVIresolution res = DVI_RES_640x240p60,
-           const struct dvi_serialiser_cfg &c = adafruit_feather_dvi_cfg,
+           const struct dvi_serialiser_cfg &c = soldered_nula_rp2350_dvi_cfg,
            vreg_voltage v = VREG_VOLTAGE_1_20);
   ~DVItext1(void);
   /*!
