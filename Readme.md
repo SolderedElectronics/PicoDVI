@@ -1,20 +1,20 @@
-# PicoDVI - Soldered Electronics fork 
+# PicoDVI fork for NULA Max RP2350
 
 ---
 
-This is a Soldered Electronics fork of the Adafruit fork of original **PicoDVI** library, updated and adapted for the **Soldered NULA RP2350** board. The goal of this fork is to make DVI output on the RP2350 easier to use out-of-the-box, with minimal setup and cleaner integration into Soldered’s development workflow.
+This is a Soldered Electronics fork of the Adafruit fork of original **PicoDVI** library, updated and adapted for the **Soldered NULA Max RP2350** board. The goal of this fork is to make DVI output on the RP2350 easier to use out-of-the-box, with minimal setup and cleaner integration into Soldered’s development workflow.
 
 ## What’s changed
-- Updated pin mappings and sensible defaults for the NULA RP2350  
+- Updated pin mappings and sensible defaults for the NULA Max RP2350  
 - Simplified configuration for common video modes  
-- Minor fixes and adjustments for RP2350 compatibility  
+- Minor fixes and adjustments for Max RP2350 compatibility  
 - Streamlined example sketches for quick testing on Soldered hardware
 
 ## Why this fork exists
 The original PicoDVI library was designed for RP2040-based boards. While it mostly works on the RP2350, several adjustments were required to ensure stable DVI output and seamless operation with Soldered’s board layout, bootloader, and recommended workflow.
 
 ## Compatibility
-- **Fully supported:** Soldered NULA RP2350  
+- **Fully supported:** Soldered NULA Max RP2350  
 - **compatible:** Other RP2350 boards (may require manual pin remapping)
 
 
